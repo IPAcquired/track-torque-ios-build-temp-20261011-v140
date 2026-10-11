@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+    <key>CFBundleDisplayName</key><string>Track Torque Admin</string>
+    <key>TrackTorqueAppKind</key><string>admin</string>
+    <key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key><string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
+    <key>CFBundleName</key><string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key><string>APPL</string>
+    <key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>LSRequiresIPhoneOS</key><true/>
+    <key>NSFaceIDUsageDescription</key><string>Use Face ID only when you enable or unlock optional local protection for private Track Torque work records. Your app password, email code, approved account and server permissions still apply.</string>
+    <key>NSCameraUsageDescription</key><string>Track Torque uses the camera only when you deliberately capture private customer vehicle photos or required on-site employee and vehicle evidence for a job clock-in or clock-out.</string>
+    <key>NSLocationWhenInUseUsageDescription</key><string>Track Torque records a current location only when you deliberately submit a job clock-in or clock-out. It does not continuously track off-hours location.</string>
+    <key>UILaunchScreen</key><dict>
+        <key>UIColorName</key><string>LaunchBackdrop</string>
+        <key>UIImageName</key><string>BrandMark</string>
+        <key>UIImageRespectsSafeAreaInsets</key><true/>
+    </dict>
+    <key>UISupportedInterfaceOrientations</key><array><string>UIInterfaceOrientationPortrait</string><string>UIInterfaceOrientationLandscapeLeft</string><string>UIInterfaceOrientationLandscapeRight</string></array>
+    <key>UIApplicationSceneManifest</key><dict><key>UIApplicationSupportsMultipleScenes</key><false/></dict>
+</dict></plist>

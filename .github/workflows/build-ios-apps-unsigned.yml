@@ -1,0 +1,30 @@
+name: Build unsigned Track Torque iPhone apps
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: macos-15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Admin and Workforce apps without signing
+        run: |
+          set -euo pipefail
+          mkdir -p build/artifacts
+          xcodebuild -project mobile/ios/TrackTorqueAdmin.xcodeproj -scheme TrackTorqueAdmin -configuration Release -sdk iphoneos -derivedDataPath build/admin CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+          mkdir -p build/admin-ipa/Payload
+          cp -R build/admin/Build/Products/Release-iphoneos/TrackTorqueAdmin.app build/admin-ipa/Payload/
+          (cd build/admin-ipa && /usr/bin/zip -qry ../artifacts/TrackTorque-Admin-unsigned.ipa Payload)
+          xcodebuild -project mobile/ios/TrackTorqueWorkforce.xcodeproj -scheme TrackTorqueWorkforce -configuration Release -sdk iphoneos -derivedDataPath build/workforce CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build
+          mkdir -p build/workforce-ipa/Payload
+          cp -R build/workforce/Build/Products/Release-iphoneos/TrackTorqueWorkforce.app build/workforce-ipa/Payload/
+          (cd build/workforce-ipa && /usr/bin/zip -qry ../artifacts/TrackTorque-Workforce-unsigned.ipa Payload)
+          shasum -a 256 build/artifacts/TrackTorque-Admin-unsigned.ipa build/artifacts/TrackTorque-Workforce-unsigned.ipa
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TrackTorque-iOS-Admin-and-Workforce
+          path: |
+            build/artifacts/TrackTorque-Admin-unsigned.ipa
+            build/artifacts/TrackTorque-Workforce-unsigned.ipa
+          if-no-files-found: error
